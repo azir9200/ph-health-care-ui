@@ -1,4 +1,6 @@
-import { Button } from "@/components/ui/button";
+import { Hero } from "@/components/modules/Home/Hero";
+import Specialties from "@/components/modules/Home/Specialties";
+import TopRatedDoctors from "@/components/modules/Home/TopRatedDoctors";
 import Head from "next/head";
 
 export default function Home() {
@@ -14,13 +16,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro libero
-          explicabo sunt molestias architecto dolore, perferendis veniam
-          officiis neque voluptates unde minus blanditiis doloribus quidem ex
-          veritatis, nemo amet repellat!
-        </p>
-        <Button> buttin</Button>
+        <Hero />
+        <Specialties />
+        <TopRatedDoctors />
+        {/* <Steps /> */}
+        {/* <Testimonials /> */}
       </main>
     </>
   );
