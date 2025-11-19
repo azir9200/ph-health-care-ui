@@ -8,7 +8,7 @@ import { UserInfo } from "@/types/user.interface";
 export const getUserInfo = async (): Promise<UserInfo | null> => {
   try {
     const accessToken = await getCookie("accessToken");
-
+    console.log("get userInfo", accessToken);
     if (!accessToken) {
       return null;
     }
