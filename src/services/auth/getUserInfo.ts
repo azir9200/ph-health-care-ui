@@ -1,26 +1,32 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
 
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
+import type { JwtPayload } from "jsonwebtoken";
 import { getCookie } from "./tokenHandlers";
 import { UserInfo } from "@/types/user.interface";
+import { UserRole } from "@/lib/auth-utils";
+
+// Extend JWT Payload so TypeScript knows your fields
+interface MyJwtPayload extends JwtPayload {
+  name?: string;
+  email: string;
+  role: UserRole;
+}
 
 export const getUserInfo = async (): Promise<UserInfo | null> => {
   try {
     const accessToken = await getCookie("accessToken");
     console.log("get userInfo", accessToken);
-    if (!accessToken) {
-      return null;
-    }
+
+    if (!accessToken) return null;
 
     const verifiedToken = jwt.verify(
       accessToken,
       process.env.JWT_SECRET as string
-    ) as JwtPayload;
+    ) as MyJwtPayload;
 
-    if (!verifiedToken) {
-      return null;
-    }
+    if (!verifiedToken) return null;
 
     const userInfo: UserInfo = {
       name: verifiedToken.name || "Unknown User",

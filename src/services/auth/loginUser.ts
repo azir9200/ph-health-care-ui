@@ -44,7 +44,7 @@ export const loginUser = async (
     });
 
     const result = await res.json();
-    console.log("login user", result);
+
     const setCookieHeaders = res.headers.getSetCookie();
 
     if (setCookieHeaders && setCookieHeaders.length > 0) {
@@ -103,14 +103,13 @@ export const loginUser = async (
 
     if (redirectTo) {
       const requestedPath = redirectTo.toString();
-      // if (isValidRedirectForRole(requestedPath, userRole)) {
-      //   redirect(`${requestedPath}?loggedIn=true`);
-      // }
-      // else {
-      //   redirect(`${getDefaultDashboardRoute(userRole)}?loggedIn=true`);
-      // }
-      // } else {
-      //   redirect(`${getDefaultDashboardRoute(userRole)}?loggedIn=true`);
+      if (isValidRedirectForRole(requestedPath, userRole)) {
+        redirect(`${requestedPath}?loggedIn=true`);
+      } else {
+        redirect(`${getDefaultDashboardRoute(userRole)}?loggedIn=true`);
+      }
+    } else {
+      redirect(`${getDefaultDashboardRoute(userRole)}?loggedIn=true`);
     }
   } catch (error: any) {
     // Re-throw NEXT_REDIRECT errors so Next.js can handle them
