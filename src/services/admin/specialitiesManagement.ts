@@ -46,7 +46,7 @@ export async function createSpecialty(_prevState: any, formData: FormData) {
     });
 
     const result = await response.json();
-
+    console.log("spec meange..", result);
     if (result.success) {
       revalidateTag("specialities-list", "max");
     }
