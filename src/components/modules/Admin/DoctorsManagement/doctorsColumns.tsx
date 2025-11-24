@@ -1,9 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { DateCell } from "@/components/shared/cell/DateCell";
-import { StatusBadgeCell } from "@/components/shared/cell/StatusBadgeCell";
-import { UserInfoCell } from "@/components/shared/cell/UserInfoCell";
+import { DateCell } from "@/components/cell/DateCell";
+import { StatusBadgeCell } from "@/components/cell/StatusBadgeCell";
+import { UserInfoCell } from "@/components/cell/UserInfoCell";
+// import { DateCell } from "@/components/shared/cell/DateCell";
+// import { StatusBadgeCell } from "@/components/shared/cell/StatusBadgeCell";
+// import { UserInfoCell } from "@/components/shared/cell/UserInfoCell";
 import { Column } from "@/components/shared/ManagementTable";
 import { IDoctor } from "@/types/doctor.interface";
 import { Star } from "lucide-react";

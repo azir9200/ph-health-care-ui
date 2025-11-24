@@ -16,7 +16,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useSpecialtySelection } from "@/hooks/specialtyHooks/useSpecialtySelection";
-// import { useSpecialtySelection } from "@/hooks/specialtyHooks/useSpecialtySelection";
 import { createDoctor, updateDoctor } from "@/services/admin/doctorManagement";
 import { IDoctor } from "@/types/doctor.interface";
 import { ISpecialty } from "@/types/specialities.interface";
@@ -24,7 +23,6 @@ import Image from "next/image";
 import { useActionState, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import SpecialtyMultiSelect from "./SpecialtyMultiSelect";
-// import SpecialtyMultiSelect from "./SpecialtyMultiSelect";
 
 interface IDoctorFormDialogProps {
   open: boolean;
