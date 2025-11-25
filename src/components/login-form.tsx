@@ -7,6 +7,7 @@ import { Button } from "./ui/button";
 import { Field, FieldDescription, FieldGroup, FieldLabel } from "./ui/field";
 import { Input } from "./ui/input";
 import { toast } from "sonner";
+import InputFieldError from "./shared/InputFieldError";
 
 const LoginForm = ({ redirect }: { redirect?: string }) => {
   const [state, formAction, isPending] = useActionState(loginUser, null);
@@ -42,11 +43,12 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
               //   required
             />
 
-            {getFieldError("email") && (
+            <InputFieldError field="email" state={state} />
+            {/* {getFieldError("email") && (
               <FieldDescription className="text-red-600">
                 {getFieldError("email")}
               </FieldDescription>
-            )}
+            )} */}
           </Field>
 
           {/* Password */}
@@ -59,11 +61,12 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
               placeholder="Enter your password"
               //   required
             />
-            {getFieldError("password") && (
+              <InputFieldError field="password" state={state} />
+            {/* {getFieldError("password") && (
               <FieldDescription className="text-red-600">
                 {getFieldError("password")}
               </FieldDescription>
-            )}
+            )} */}
           </Field>
         </div>
         <FieldGroup className="mt-4">

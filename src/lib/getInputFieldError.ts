@@ -1,3 +1,5 @@
+import RegisterForm from "@/components/register-form";
+
 export interface IInputErrorState {
   success: boolean;
   errors: {
@@ -16,3 +18,4 @@ export const getInputFieldError = (
     return null;
   }
 };
+RegisterForm
