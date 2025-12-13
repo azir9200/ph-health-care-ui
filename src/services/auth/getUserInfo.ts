@@ -9,6 +9,7 @@ import { UserRole } from "@/lib/auth-utils";
 
 // Extend JWT Payload so TypeScript knows your fields
 interface MyJwtPayload extends JwtPayload {
+  id?: string;
   name?: string;
   email: string;
   role: UserRole;
@@ -29,6 +30,7 @@ export const getUserInfo = async (): Promise<UserInfo | null> => {
     if (!verifiedToken) return null;
 
     const userInfo: UserInfo = {
+      id: verifiedToken.id,
       name: verifiedToken.name || "Unknown User",
       email: verifiedToken.email,
       role: verifiedToken.role,
