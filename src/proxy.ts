@@ -13,7 +13,6 @@ import { deleteCookie, getCookie } from "./services/auth/tokenHandlers";
 export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  // const accessToken = request.cookies.get("accessToken")?.value || null;
 
   const accessToken = (await getCookie("accessToken")) || null;
 
