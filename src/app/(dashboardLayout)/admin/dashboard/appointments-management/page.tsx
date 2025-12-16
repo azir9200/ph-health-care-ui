@@ -3,7 +3,7 @@ import AppointmentsFilter from "@/components/modules/Admin/AppointmentsManagemen
 import AppointmentsTable from "@/components/modules/Admin/AppointmentsManagement/AppointmentsTable";
 import ManagementPageHeader from "@/components/shared/ManagementPageHeader";
 import TablePagination from "@/components/shared/TablePagination";
-import { TableSkeleton } from "@/components/shared/TableSkeleton";
+import { TableSkeleton } from "@/components/shared/skeleton/TableSkeleton";
 import { queryStringFormatter } from "@/lib/formatters";
 import { getAppointments } from "@/services/admin/appoitmentsManagement";
 import { Suspense } from "react";

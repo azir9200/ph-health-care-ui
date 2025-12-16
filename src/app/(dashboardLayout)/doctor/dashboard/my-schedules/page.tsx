@@ -2,7 +2,7 @@ import MySchedulesFilters from "@/components/modules/Doctor/MySchedules/MySchedu
 import MySchedulesHeader from "@/components/modules/Doctor/MySchedules/MyScheduleHeader";
 import MySchedulesTable from "@/components/modules/Doctor/MySchedules/MyScheduleTable";
 import TablePagination from "@/components/shared/TablePagination";
-import { TableSkeleton } from "@/components/shared/TableSkeleton";
+import { TableSkeleton } from "@/components/shared/skeleton/TableSkeleton";
 import { queryStringFormatter } from "@/lib/formatters";
 import {
   getAvailableSchedules,

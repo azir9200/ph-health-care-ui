@@ -1,6 +1,6 @@
 "use client";
 import { useMemo } from "react";
-import { TableSkeleton } from "./TableSkeleton";
+import { TableSkeleton } from "./skeleton/TableSkeleton";
 
 interface ManagementPageLoadingProps {
   columns: number;

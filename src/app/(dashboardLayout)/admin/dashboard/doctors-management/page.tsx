@@ -2,7 +2,7 @@ import DoctorFilters from "@/components/modules/Admin/DoctorsManagement/DoctorFi
 import DoctorsManagementHeader from "@/components/modules/Admin/DoctorsManagement/DoctorsManagementHeader";
 import DoctorsTable from "@/components/modules/Admin/DoctorsManagement/DoctorsTable";
 import TablePagination from "@/components/shared/TablePagination";
-import { TableSkeleton } from "@/components/shared/TableSkeleton";
+import { TableSkeleton } from "@/components/shared/skeleton/TableSkeleton";
 import { queryStringFormatter } from "@/lib/formatters";
 import { getDoctors } from "@/services/admin/doctorManagement";
 import { getSpecialities } from "@/services/admin/specialitiesManagement";

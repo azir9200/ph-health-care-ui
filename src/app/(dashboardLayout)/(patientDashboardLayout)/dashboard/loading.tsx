@@ -1,7 +1,7 @@
 import { DashboardSkeleton } from "@/components/shared/skeleton/DashboardSkeleton";
 
-const AdminDashboardLoading = () => {
+const PatientDashboardHomeLoading = () => {
   return <DashboardSkeleton />;
 };
 
-export default AdminDashboardLoading;
+export default PatientDashboardHomeLoading;

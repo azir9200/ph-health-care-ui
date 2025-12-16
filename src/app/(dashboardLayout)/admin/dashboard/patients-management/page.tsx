@@ -2,7 +2,7 @@ import PatientsFilter from "@/components/modules/Admin/PatientsManagement/Patien
 import PatientsTable from "@/components/modules/Admin/PatientsManagement/PatientsTable";
 import ManagementPageHeader from "@/components/shared/ManagementPageHeader";
 import TablePagination from "@/components/shared/TablePagination";
-import { TableSkeleton } from "@/components/shared/TableSkeleton";
+import { TableSkeleton } from "@/components/shared/skeleton/TableSkeleton";
 import { queryStringFormatter } from "@/lib/formatters";
 import { getPatients } from "@/services/admin/patientsManagement";
 import { Suspense } from "react";

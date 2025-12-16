@@ -2,7 +2,7 @@ import SchedulesFilter from "@/components/modules/Admin/SchedulesManagement/Sche
 import SchedulesManagementHeader from "@/components/modules/Admin/SchedulesManagement/SchedulesManagementHeader";
 import SchedulesTable from "@/components/modules/Admin/SchedulesManagement/SchedulesTable";
 import TablePagination from "@/components/shared/TablePagination";
-import { TableSkeleton } from "@/components/shared/TableSkeleton";
+import { TableSkeleton } from "@/components/shared/skeleton/TableSkeleton";
 import { queryStringFormatter } from "@/lib/formatters";
 import { getSchedules } from "@/services/admin/schedulesManagement";
 import { Suspense } from "react";
