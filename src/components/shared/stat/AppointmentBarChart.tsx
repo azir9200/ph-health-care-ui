@@ -53,7 +53,7 @@ export function AppointmentBarChart({ data }: AppointmentBarChartProps) {
   }, []);
 
   // Format data for recharts
-  const formattedData = data.map((item) => ({
+  const formattedData = data?.map((item) => ({
     month:
       typeof item.month === "string"
         ? format(new Date(item.month), "MMM yyyy")
@@ -62,7 +62,7 @@ export function AppointmentBarChart({ data }: AppointmentBarChartProps) {
   }));
 
   // Handle empty data
-  if (formattedData.length === 0) {
+  if (formattedData?.length === 0) {
     return (
       <Card className="col-span-4">
         <CardHeader>

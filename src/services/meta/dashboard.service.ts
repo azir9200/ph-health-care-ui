@@ -7,6 +7,7 @@ import { getUserInfo } from "../auth/getUserInfo";
 export async function getDashboardMetaData() {
   try {
     const userInfo = await getUserInfo();
+    console.log("meta userinfo  ===>", userInfo);
     const cacheTag = `${userInfo.role.toLowerCase()}-dashboard-meta`;
 
     const response = await serverFetch.get("/meta", {
@@ -18,6 +19,7 @@ export async function getDashboardMetaData() {
       },
     });
     const result = await response.json();
+    console.log("meta dash", result);
     return result;
   } catch (error: any) {
     console.log(error);

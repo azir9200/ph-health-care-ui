@@ -29,7 +29,7 @@ interface AppointmentPieChartProps {
 }
 
 export function AppointmentPieChart({
-  data,
+  data = [],
   title = "Appointment Status",
   description = "Distribution of appointment statuses",
 }: AppointmentPieChartProps) {
