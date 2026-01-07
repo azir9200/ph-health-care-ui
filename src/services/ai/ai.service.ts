@@ -20,6 +20,7 @@ export async function getAIDoctorSuggestion(symptoms: string) {
     });
 
     const result = await response.json();
+    console.log("ai service", result);
     return result;
   } catch (error: any) {
     console.error("Error getting AI doctor suggestion:", error);

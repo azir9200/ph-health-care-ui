@@ -43,7 +43,7 @@ export default function NavbarAuthButtons({
 
   return (
     <Link href="/login">
-      <Button>Login</Button>
+      <Button className="bg-white text-blue-950">Login</Button>
     </Link>
   );
 }

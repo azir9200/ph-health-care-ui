@@ -28,37 +28,75 @@ const SpecialitiesFormDialog = ({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [state, formAction, pending] = useActionState(createSpecialty, null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const hasShownToast = useRef(false);
+  const handleClose = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+
+    setSelectedFile(null);
+    formRef.current?.reset();
+    onClose();
+  };
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     setSelectedFile(file || null);
   };
+  useEffect(() => {
+    if (open) {
+      hasShownToast.current = false;
+    }
+  }, [open]);
 
   useEffect(() => {
-    if (state && state?.success) {
+    if (!state || hasShownToast.current) return;
+
+    hasShownToast.current = true;
+
+    if (state.success) {
       toast.success(state.message);
       onSuccess();
       onClose();
-    } else if (state && !state.success) {
+    } else {
       toast.error(state.message);
 
+      // restore file input on validation error
       if (selectedFile && fileInputRef.current) {
         const dataTransfer = new DataTransfer();
         dataTransfer.items.add(selectedFile);
         fileInputRef.current.files = dataTransfer.files;
       }
     }
-  }, [state, onSuccess, onClose, selectedFile]);
+  }, [state]); // 👈 keep dependencies minimal
 
-  const handleClose = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
-    if (selectedFile) {
-      setSelectedFile(null); // Clear preview
-    }
-    formRef.current?.reset(); // Clear form
-    onClose(); // Close dialog
-  };
+  // useEffect(() => {
+  //   if (!state) return;
+  //   if (state.success && !hasShownToast.current) {
+  //     hasShownToast.current = true;
+  //     toast.success(state.message);
+  //     onSuccess();
+  //       handleClose();
+  //   } else if (state && !state.success) {
+  //     toast.error(state.message);
+
+  //     if (selectedFile && fileInputRef.current) {
+  //       const dataTransfer = new DataTransfer();
+  //       dataTransfer.items.add(selectedFile);
+  //       fileInputRef.current.files = dataTransfer.files;
+  //     }
+  //   }
+  // }, [state, onSuccess, onClose, selectedFile]);
+
+  // const handleClose = () => {
+  //   if (fileInputRef.current) {
+  //     fileInputRef.current.value = "";
+  //   }
+  //   if (selectedFile) {
+  //     setSelectedFile(null); // Clear preview
+  //   }
+  //   formRef.current?.reset(); // Clear form
+  //   onClose(); // Close dialog
+  // };
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>

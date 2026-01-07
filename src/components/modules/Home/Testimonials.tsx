@@ -26,7 +26,7 @@ const testimonials = [
     image: samplePhoto,
     quote:
       "I highly recommend their services. The specialists are top-notch, and they truly focus on preventive care which has greatly improved my health.",
-    rating: 5,
+    rating: 4,
   },
 ];
 

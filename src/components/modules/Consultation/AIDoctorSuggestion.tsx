@@ -10,6 +10,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
+import { getAIDoctorSuggestion } from "@/services/ai/ai.service";
+import { IDoctor } from "@/types/doctor.interface";
 import { Loader2, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -17,7 +19,8 @@ import { toast } from "sonner";
 export default function AIDoctorSuggestion() {
   const [symptoms, setSymptoms] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [suggestion, setSuggestion] = useState<string>("");
+  const [suggestion, setSuggestion] = useState<IDoctor[]>([]);
+  ("");
   const [showSuggestion, setShowSuggestion] = useState(false);
 
   const handleGetSuggestion = async () => {
@@ -31,13 +34,14 @@ export default function AIDoctorSuggestion() {
     setShowSuggestion(false);
 
     try {
-      //   const response = await getDoctorSuggestion(symptoms);
-      //   if (response.success) {
-      //     setSuggestion(response.data || "No suggestion available");
-      //     setShowSuggestion(true);
-      //   } else {
-      //     toast.error(response.message || "Failed to get AI suggestion");
-      //   }
+      const response = await getAIDoctorSuggestion(symptoms);
+      console.log("get AI response", response);
+      if (response.success) {
+        setSuggestion(response.data || [] || "No suggestion available");
+        setShowSuggestion(true);
+      } else {
+        toast.error(response.message || "Failed to get AI suggestion");
+      }
     } catch (error) {
       console.error("Error getting AI suggestion:", error);
       toast.error("Failed to get AI suggestion");
@@ -93,7 +97,31 @@ export default function AIDoctorSuggestion() {
           )}
         </Button>
 
-        {showSuggestion && suggestion && (
+        {showSuggestion && suggestion.length > 0 && (
+          <div className="space-y-4">
+            {suggestion?.map((doctor, index) => (
+              <Card key={index} className="p-4 border">
+                <h3 className="font-semibold">{doctor.name}</h3>
+                <p className="text-sm text-gray-600">
+                  Experience:
+                  {/* {doctor.yearsOfExperience} */}
+                  years
+                </p>
+
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {doctor.doctorSpecialties?.map((ds: any) => (
+                    <Badge key={ds.specialities.id} variant="outline">
+                      {ds.specialities.name}
+                    </Badge>
+                  ))}
+                </div>
+              </Card>
+            ))}
+          </div>
+        )}
+
+        {/* 
+        {showSuggestion && suggestion.length > 0 && (
           <div className="space-y-3 p-4 bg-white rounded-lg border border-purple-200">
             <div className="flex items-center gap-2">
               <Badge
@@ -109,7 +137,7 @@ export default function AIDoctorSuggestion() {
               </p>
             </div>
           </div>
-        )}
+        )} */}
       </CardContent>
     </Card>
   );
