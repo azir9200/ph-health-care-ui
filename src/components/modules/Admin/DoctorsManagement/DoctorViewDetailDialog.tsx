@@ -37,6 +37,7 @@ const DoctorViewDetailDialog = ({
   if (!doctor) {
     return null;
   }
+  console.log("object doctor...", doctor);
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="min-w-5xl max-h-[90vh] flex flex-col p-0">
@@ -158,7 +159,7 @@ const DoctorViewDetailDialog = ({
                           variant="outline"
                           className="px-4 py-2 text-sm"
                         >
-                          {specialty.specialties?.title || "Unknown"}
+                          {specialty.specialities?.title || "Unknown"}
                         </Badge>
                       ))}
                     </div>

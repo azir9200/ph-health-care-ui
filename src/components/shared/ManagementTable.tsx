@@ -45,9 +45,7 @@ interface ManagementTableProps<T> {
   isRefreshing?: boolean;
 }
 
-// const ManagementTable<T> = (props: ManagementTableProps<T>) => {
-//   return <div>ManagementTable</div>;
-// };
+
 
 function ManagementTable<T>({
   data = [],

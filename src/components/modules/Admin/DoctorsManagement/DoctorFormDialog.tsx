@@ -48,6 +48,17 @@ const DoctorFormDialog = ({
   );
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const hasShownToast = useRef(false);
+  const handleClose = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+    if (selectedFile) {
+      setSelectedFile(null); // Clear preview
+    }
+    formRef.current?.reset();
+    onClose();
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -59,17 +70,6 @@ const DoctorFormDialog = ({
     null
   );
 
-  const handleClose = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
-    if (selectedFile) {
-      setSelectedFile(null); // Clear preview
-    }
-    formRef.current?.reset(); // Clear form
-    onClose(); // Close dialog
-  };
-
   const specialtySelection = useSpecialtySelection({
     doctor,
     isEdit,
@@ -79,8 +79,17 @@ const DoctorFormDialog = ({
   const getSpecialtyTitle = (id: string): string => {
     return specialities?.find((s) => s.id === id)?.title || "Unknown";
   };
+  useEffect(() => {
+    if (open) {
+      hasShownToast.current = false;
+    }
+  }, [open]);
 
   useEffect(() => {
+    if (!state || hasShownToast.current) return;
+
+    hasShownToast.current = true;
+
     if (state?.success) {
       toast.success(state.message);
       if (formRef.current) {
