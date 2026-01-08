@@ -17,6 +17,7 @@ interface DoctorsTableProps {
 }
 
 const DoctorsTable = ({ doctors, specialities }: DoctorsTableProps) => {
+  
   const router = useRouter();
   const [, startTransition] = useTransition();
   const [deletingDoctor, setDeletingDoctor] = useState<IDoctor | null>(null);

@@ -4,9 +4,6 @@
 import { DateCell } from "@/components/cell/DateCell";
 import { StatusBadgeCell } from "@/components/cell/StatusBadgeCell";
 import { UserInfoCell } from "@/components/cell/UserInfoCell";
-// import { DateCell } from "@/components/shared/cell/DateCell";
-// import { StatusBadgeCell } from "@/components/shared/cell/StatusBadgeCell";
-// import { UserInfoCell } from "@/components/shared/cell/UserInfoCell";
 import { Column } from "@/components/shared/ManagementTable";
 import { IDoctor } from "@/types/doctor.interface";
 import { Star } from "lucide-react";
@@ -28,7 +25,7 @@ export const doctorsColumns: Column<IDoctor>[] = [
     accessor: (doctor) => {
       // Handle both possible response structures
       const specialties: any = doctor.doctorSpecialties;
-
+      console.log("doctormmmm ", specialties);
       if (!specialties || specialties.length === 0) {
         return <span className="text-xs text-gray-500">No specialties</span>;
       }

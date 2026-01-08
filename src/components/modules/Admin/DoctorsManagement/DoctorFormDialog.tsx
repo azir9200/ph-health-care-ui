@@ -54,7 +54,7 @@ const DoctorFormDialog = ({
       fileInputRef.current.value = "";
     }
     if (selectedFile) {
-      setSelectedFile(null); // Clear preview
+      setSelectedFile(null);
     }
     formRef.current?.reset();
     onClose();
@@ -69,7 +69,7 @@ const DoctorFormDialog = ({
     isEdit ? updateDoctor.bind(null, doctor.id!) : createDoctor,
     null
   );
-
+  console.log("doctor form action", state, "fromaction", formAction);
   const specialtySelection = useSpecialtySelection({
     doctor,
     isEdit,

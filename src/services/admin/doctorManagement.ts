@@ -83,7 +83,7 @@ export async function createDoctor(_prevState: any, formData: FormData) {
   const newFormData = new FormData();
   newFormData.append("data", JSON.stringify(backendPayload));
   newFormData.append("file", formData.get("file") as Blob);
-
+  console.log("object", newFormData);
   try {
     const response = await serverFetch.post("/user/create-doctor", {
       body: newFormData,
@@ -167,6 +167,7 @@ export async function updateDoctor(
 
   // Parse specialties array (for adding new specialties)
   const specialtiesValue = formData.get("specialties") as string;
+  console.log("jgkhklj;kk;lk;'", specialtiesValue);
   if (specialtiesValue) {
     try {
       const parsed = JSON.parse(specialtiesValue);
