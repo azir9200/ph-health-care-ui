@@ -11,11 +11,10 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
-import { createDoctorSchedule, getAvailableSchedules } from "@/services/doctor/doctorScedule.services";
-// import {
-//   createDoctorSchedule,
-//   getAvailableSchedules,
-// } from "@/services/doctor/doctorScedule.services";
+import {
+  createDoctorSchedule,
+  getAvailableSchedules,
+} from "@/services/doctor/doctorScedule.services";
 import { ISchedule } from "@/types/schedule.interface";
 import { format } from "date-fns";
 import { Calendar } from "lucide-react";
@@ -39,6 +38,8 @@ export default function BookScheduleDialog({
   const [availableSchedules, setAvailableSchedules] = useState<ISchedule[]>(
     initialAvailableSchedules
   );
+ 
+
   const [selectedSchedules, setSelectedSchedules] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [loadingSchedules, setLoadingSchedules] = useState(false);
@@ -56,8 +57,8 @@ export default function BookScheduleDialog({
     try {
       setLoadingSchedules(true);
       const response = await getAvailableSchedules();
-      console.log("response:", response);
-      setAvailableSchedules(response?.data || []);
+      
+      setAvailableSchedules(response?.data?.data || []);
     } catch (error) {
       console.error("Error loading schedules:", error);
       toast.error("Failed to load available schedules");
@@ -123,8 +124,7 @@ export default function BookScheduleDialog({
 
   const groupedSchedules = groupSchedulesByDate();
 
-  console.log({ availableSchedules, groupedSchedules });
-
+ 
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">

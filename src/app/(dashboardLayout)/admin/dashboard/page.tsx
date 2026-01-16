@@ -12,7 +12,6 @@ import { Suspense } from "react";
 
 async function AdminDashboardContent() {
   const result = await getDashboardMetaData();
-  console.log("admin dashboard", result);
   const data: IAdminDashboardMeta = result.data;
 
   const totalRevenue = data?.totalRevenue?._sum?.amount || 0;

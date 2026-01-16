@@ -1,7 +1,6 @@
 "use client";
 
 import LogoutButton from "@/components/shared/LogoutButton";
-// import LogoutButton from "@/components/shared/LogoutButton";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -39,7 +38,7 @@ const UserDropdown = ({ userInfo }: UserDropdownProps) => {
             <p className="text-sm font-medium">{userInfo.name}</p>
             <p className="text-xs text-muted-foreground">{userInfo.email}</p>
             <p className="text-xs text-primary capitalize">
-              {userInfo.role.toLowerCase()}
+              {userInfo?.role?.toLowerCase()}
             </p>
           </div>
         </DropdownMenuLabel>

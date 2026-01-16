@@ -27,11 +27,6 @@ const DoctorMySchedulesPage = async ({
   const myDoctorsScheduleResponse = await getDoctorOwnSchedules(queryString);
   const availableSchedulesResponse = await getAvailableSchedules();
 
-  console.log({
-    myDoctorsScheduleResponse,
-    availableSchedulesResponse,
-  });
-
   const schedules = myDoctorsScheduleResponse?.data || [];
   const meta = myDoctorsScheduleResponse?.meta;
   const totalPages = Math.ceil((meta?.total || 1) / (meta?.limit || 1));
@@ -39,7 +34,7 @@ const DoctorMySchedulesPage = async ({
   return (
     <div className="space-y-6">
       <MySchedulesHeader
-        availableSchedules={availableSchedulesResponse?.data || []}
+        availableSchedules={availableSchedulesResponse?.data?.data || []}
       />
 
       <MySchedulesFilters />

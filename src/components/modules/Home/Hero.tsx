@@ -4,6 +4,7 @@ import { LargeSparkleIcon, SparkleIcon } from "@/assets/icons/SparkleIcon";
 import { HeroProps } from "@/types/heroProps";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import Link from "next/link";
 
 export function Hero({
   badge = {
@@ -111,16 +112,18 @@ export function Hero({
                     {buttons.primary.text}
                   </Button>
                 )}
-                {buttons.secondary && (
-                  <Button
-                    onClick={buttons.secondary.onClick}
-                    variant="outline"
-                    className="h-[63.622px] gap-3 rounded-xl border-blue-600 px-8 text-[15.3px] text-blue-600 hover:bg-blue-50"
-                  >
-                    <Calendar className="size-5" />
-                    {buttons.secondary.text}
-                  </Button>
-                )}
+                <Link href={"/consultation"}>
+                  {buttons.secondary && (
+                    <Button
+                      onClick={buttons.secondary.onClick}
+                      variant="outline"
+                      className="h-[63.622px] gap-3 rounded-xl border-blue-600 px-8 text-[15.3px] text-blue-600 hover:bg-blue-50"
+                    >
+                      <Calendar className="size-5" />
+                      {buttons.secondary.text}
+                    </Button>
+                  )}
+                </Link>
               </div>
 
               {/* Stats */}

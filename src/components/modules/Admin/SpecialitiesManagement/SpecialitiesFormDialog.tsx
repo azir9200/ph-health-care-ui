@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { createSpecialty } from "@/services/admin/specialitiesManagement";
+import { createSpeciality } from "@/services/admin/specialitiesManagement";
 import { useActionState, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
@@ -26,10 +26,10 @@ const SpecialitiesFormDialog = ({
 }: ISpecialitiesFormDialogProps) => {
   const formRef = useRef<HTMLFormElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [state, formAction, pending] = useActionState(createSpecialty, null);
+  const [state, formAction, pending] = useActionState(createSpeciality, null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const hasShownToast = useRef(false);
-  
+
   const handleClose = () => {
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
@@ -69,7 +69,6 @@ const SpecialitiesFormDialog = ({
       }
     }
   }, [state, onSuccess, onClose, selectedFile]);
-
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>

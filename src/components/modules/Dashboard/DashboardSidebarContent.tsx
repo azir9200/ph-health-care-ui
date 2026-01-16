@@ -18,10 +18,11 @@ interface DashboardSidebarContentProps {
 
 const DashboardSidebarContent = ({
   userInfo,
-  navItems,
+  navItems = [],
   dashboardHome,
 }: DashboardSidebarContentProps) => {
   const pathname = usePathname();
+
   return (
     <div className="hidden md:flex h-full w-64 flex-col border-r bg-card">
       {/* Logo/Brand */}
@@ -36,13 +37,13 @@ const DashboardSidebarContent = ({
         <nav className="space-y-6">
           {navItems.map((section, sectionIdx) => (
             <div key={sectionIdx}>
-              {section.title && (
+              {section?.title && (
                 <h4 className="mb-2 px-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                   {section.title}
                 </h4>
               )}
               <div className="space-y-1">
-                {section.items.map((item) => {
+                {section?.items?.map((item) => {
                   const isActive = pathname === item.href;
                   const Icon = getIconComponent(item.icon);
 
@@ -84,13 +85,14 @@ const DashboardSidebarContent = ({
         <div className="flex items-center gap-3">
           <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
             <span className="text-sm font-semibold text-primary">
-              {userInfo.name.charAt(0).toUpperCase()}
+              {userInfo?.name?.charAt(0).toUpperCase()}
             </span>
           </div>
           <div className="flex-1 overflow-hidden">
             <p className="text-sm font-medium truncate">{userInfo.name}</p>
+
             <p className="text-xs text-muted-foreground capitalize">
-              {userInfo.role.toLowerCase()}
+              {userInfo?.role?.toLowerCase()}
             </p>
           </div>
         </div>

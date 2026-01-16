@@ -25,7 +25,7 @@ export const doctorsColumns: Column<IDoctor>[] = [
     accessor: (doctor) => {
       // Handle both possible response structures
       const specialties: any = doctor.doctorSpecialties;
-      console.log("doctormmmm ", specialties);
+    
       if (!specialties || specialties.length === 0) {
         return <span className="text-xs text-gray-500">No specialties</span>;
       }

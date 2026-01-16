@@ -1,48 +1,45 @@
 export interface IBarChartData {
-  month: Date | string;
-  count: number;
+    month: Date | string;
+    count: number;
 }
 
 export interface IPieChartData {
-  status: string;
-  count: number;
+    status: string;
+    count: number;
 }
 
 export interface IAdminDashboardMeta {
-  appointmentCount: number;
-  patientCount: number;
-  doctorCount: number;
-  adminCount?: number; // Only for super admin
-  paymentCount: number;
-  totalRevenue: {
-    _sum: {
-      amount: number | null;
+    appointmentCount: number;
+    patientCount: number;
+    doctorCount: number;
+    adminCount?: number; // Only for super admin
+    paymentCount: number;
+    totalRevenue: {
+        _sum: {
+            amount: number | null;
+        };
     };
-  };
-  barChartData: IBarChartData[];
-  pieCharData: IPieChartData[];
+    barChartData: IBarChartData[];
+    pieCharData: IPieChartData[];
 }
 
 export interface IDoctorDashboardMeta {
-  appointmentCount: number;
-  patientCount: number;
-  reviewCount: number;
-  totalRevenue: {
-    _sum: {
-      amount: number | null;
+    appointmentCount: number;
+    patientCount: number;
+    reviewCount: number;
+    totalRevenue: {
+        _sum: {
+            amount: number | null;
+        };
     };
-  };
-  formattedAppointmentStatusDistribution: IPieChartData[];
+    formattedAppointmentStatusDistribution: IPieChartData[];
 }
 
 export interface IPatientDashboardMeta {
-  appointmentCount: number;
-  prescriptionCount: number;
-  reviewCount: number;
-  formattedAppointmentStatusDistribution: IPieChartData[];
+    appointmentCount: number;
+    prescriptionCount: number;
+    reviewCount: number;
+    formattedAppointmentStatusDistribution: IPieChartData[];
 }
 
-export type IDashboardMeta =
-  | IAdminDashboardMeta
-  | IDoctorDashboardMeta
-  | IPatientDashboardMeta;
+export type IDashboardMeta = IAdminDashboardMeta | IDoctorDashboardMeta | IPatientDashboardMeta;

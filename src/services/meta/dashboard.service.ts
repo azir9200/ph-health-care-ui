@@ -7,29 +7,28 @@ import { getUserInfo } from "../auth/getUserInfo";
 export async function getDashboardMetaData() {
   try {
     const userInfo = await getUserInfo();
-    console.log("meta userinfo  ===>", userInfo);
-    const cacheTag = `${userInfo.role.toLowerCase()}-dashboard-meta`;
+
+    const role = userInfo?.role?.toLowerCase() ?? "user";
+    const cacheTag = `${role}-dashboard-meta`;
 
     const response = await serverFetch.get("/meta", {
       next: {
         tags: [cacheTag, "dashboard-meta", "meta-data"],
-        // Faster revalidation for dashboard (30 seconds)
-        // Dashboard stats should update frequently for real-time feel
         revalidate: 30,
       },
     });
+
     const result = await response.json();
-    console.log("meta dash", result);
     return result;
   } catch (error: any) {
-    console.log(error);
+    console.error("getDashboardMetaData error:", error);
+
     return {
       success: false,
-      message: `${
+      message:
         process.env.NODE_ENV === "development"
-          ? error.message
-          : "Something went wrong"
-      }`,
+          ? error?.message ?? "Unknown error"
+          : "Something went wrong",
     };
   }
 }

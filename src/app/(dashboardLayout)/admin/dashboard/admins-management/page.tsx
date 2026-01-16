@@ -16,6 +16,7 @@ const AdminAdminsManagementPage = async ({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) => {
   const searchParamsObj = await searchParams;
+  
   const queryString = queryStringFormatter(searchParamsObj);
   const adminsResult = await getAdmins(queryString);
 

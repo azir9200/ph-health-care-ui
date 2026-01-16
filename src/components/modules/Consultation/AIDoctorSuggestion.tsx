@@ -13,6 +13,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { getAIDoctorSuggestion } from "@/services/ai/ai.service";
 import { IDoctor } from "@/types/doctor.interface";
 import { Loader2, Sparkles } from "lucide-react";
+
+interface DoctorSpecialty {
+  specialities: {
+    id: string;
+    name: string;
+  };
+}
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -35,7 +42,7 @@ export default function AIDoctorSuggestion() {
 
     try {
       const response = await getAIDoctorSuggestion(symptoms);
-      console.log("get AI response", response);
+    
       if (response.success) {
         setSuggestion(response.data || [] || "No suggestion available");
         setShowSuggestion(true);
@@ -109,7 +116,7 @@ export default function AIDoctorSuggestion() {
                 </p>
 
                 <div className="flex flex-wrap gap-2 mt-2">
-                  {doctor.doctorSpecialties?.map((ds: any) => (
+                  {doctor.doctorSpecialties?.map((ds: DoctorSpecialty) => (
                     <Badge key={ds.specialities.id} variant="outline">
                       {ds.specialities.name}
                     </Badge>

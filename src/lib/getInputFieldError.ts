@@ -1,4 +1,3 @@
-
 export interface IInputErrorState {
   success: boolean;
   errors: {

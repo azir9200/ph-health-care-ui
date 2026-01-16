@@ -1,13 +1,12 @@
 "use client";
 import DeleteConfirmationDialog from "@/components/shared/DeleteConfirmationDialog";
 import ManagementTable from "@/components/shared/ManagementTable";
-import { deleteSpecialty } from "@/services/admin/specialitiesManagement";
-// import { deleteSpeciality } from "@/services/admin/specialitiesManagement";
 import { ISpecialty } from "@/types/specialities.interface";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { toast } from "sonner";
 import { specialitiesColumns } from "./SpecialitiesColumns";
+import { deleteSpeciality } from "@/services/admin/specialitiesManagement";
 
 interface SpecialityTableProps {
   specialities: ISpecialty[];
@@ -34,7 +33,7 @@ const SpecialitiesTable = ({ specialities }: SpecialityTableProps) => {
     if (!deletingSpeciality) return;
 
     setIsDeletingDialog(true);
-    const result = await deleteSpecialty(deletingSpeciality.id);
+    const result = await deleteSpeciality(deletingSpeciality.id);
     setIsDeletingDialog(false);
     if (result.success) {
       toast.success(result.message || "Speciality deleted successfully");

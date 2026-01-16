@@ -67,7 +67,7 @@ const MyProfile = ({ userInfo }: MyProfileProps) => {
 
     startTransition(async () => {
       const result = await updateMyProfile(formData);
-      console.log("my profile", result);
+
       if (result.success) {
         setSuccess(result.message);
         setPreviewImage(null);

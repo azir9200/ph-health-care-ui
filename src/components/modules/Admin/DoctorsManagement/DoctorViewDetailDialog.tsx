@@ -37,7 +37,7 @@ const DoctorViewDetailDialog = ({
   if (!doctor) {
     return null;
   }
-  console.log("object doctor...", doctor);
+
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="min-w-5xl max-h-[90vh] flex flex-col p-0">

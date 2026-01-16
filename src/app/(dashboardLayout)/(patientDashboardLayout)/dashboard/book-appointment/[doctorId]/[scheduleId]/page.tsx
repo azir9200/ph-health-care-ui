@@ -1,4 +1,3 @@
-
 import AppointmentConfirmation from "@/components/modules/Patient/PatientAppointment/AppointmentConfirmation";
 import { getDoctorById } from "@/services/admin/doctorManagement";
 import { getScheduleById } from "@/services/admin/schedulesManagement";

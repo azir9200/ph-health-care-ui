@@ -25,9 +25,22 @@ const ScheduleFormDialog = ({
 }: IScheduleFormDialogProps) => {
   const formRef = useRef<HTMLFormElement>(null);
   const [state, formAction, isPending] = useActionState(createSchedule, null);
-
+  const hasShownToast = useRef(false);
+  const handleClose = () => {
+    formRef.current?.reset();
+    onClose();
+  };
+  useEffect(() => {
+    if (open) {
+      hasShownToast.current = false;
+    }
+  }, [open]);
   // Handle success/error from server
   useEffect(() => {
+    if (!state || hasShownToast.current) return;
+
+    hasShownToast.current = true;
+
     if (state?.success) {
       toast.success(state.message || "Schedule created successfully");
       if (formRef.current) {
@@ -39,11 +52,6 @@ const ScheduleFormDialog = ({
       toast.error(state.message);
     }
   }, [state, onSuccess, onClose]);
-
-  const handleClose = () => {
-    formRef.current?.reset();
-    onClose();
-  };
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>

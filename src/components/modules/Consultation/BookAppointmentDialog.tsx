@@ -12,7 +12,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { IDoctor } from "@/types/doctor.interface";
 import { IDoctorSchedule } from "@/types/schedule.interface";
- import { format } from "date-fns";
+import { format } from "date-fns";
 import { Calendar, Clock } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -32,7 +32,7 @@ export default function BookAppointmentDialog({
   const doctorSchedules = doctor.doctorSchedules || [];
   const [selectedSchedule, setSelectedSchedule] =
     useState<IDoctorSchedule | null>(null);
-
+ 
   const handleCloseModal = () => {
     setSelectedSchedule(null);
     onClose();
