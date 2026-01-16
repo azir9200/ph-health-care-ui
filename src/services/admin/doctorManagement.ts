@@ -133,7 +133,7 @@ export async function getDoctors(queryString?: string) {
       }
     );
     const result = await response.json();
-   
+  
     return result;
   } catch (error: any) {
     console.log(error);

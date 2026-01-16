@@ -32,7 +32,7 @@ export default function BookAppointmentDialog({
   const doctorSchedules = doctor.doctorSchedules || [];
   const [selectedSchedule, setSelectedSchedule] =
     useState<IDoctorSchedule | null>(null);
- 
+
   const handleCloseModal = () => {
     setSelectedSchedule(null);
     onClose();
