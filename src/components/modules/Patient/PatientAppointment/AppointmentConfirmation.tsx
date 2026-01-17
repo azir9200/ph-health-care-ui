@@ -41,14 +41,14 @@ const AppointmentConfirmation = ({
 
   const handleConfirmBooking = async () => {
     setIsPayingNow(true);
-
+    
     try {
       const result = await createAppointment({
         doctorId: doctor.id!,
         scheduleId: schedule.id,
       });
-
-      if (result.success && result.data?.paymentUrl) {
+      console.log("Appointment Creation Result:", result);
+      if (result?.success && result?.data?.paymentUrl) {
         toast.success("Redirecting to payment...");
         // Redirect to Stripe checkout
         window.location.replace(result.data.paymentUrl);
@@ -83,7 +83,7 @@ const AppointmentConfirmation = ({
       if (result.success) {
         setBookingSuccess(true);
         toast.success(
-          "Appointment booked! You can pay later from your appointments page."
+          "Appointment booked! You can pay later from your appointments page.",
         );
 
         // Redirect after 2 seconds

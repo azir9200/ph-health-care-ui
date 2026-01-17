@@ -34,9 +34,9 @@ interface AppointmentsListProps {
 
 const AppointmentsList = ({ appointments }: AppointmentsListProps) => {
   const [processingPaymentId, setProcessingPaymentId] = useState<string | null>(
-    null
+    null,
   );
-
+  console.log("appoint llist", appointments);
   const handlePayNow = async (appointmentId: string) => {
     setProcessingPaymentId(appointmentId);
     try {
@@ -47,7 +47,7 @@ const AppointmentsList = ({ appointments }: AppointmentsListProps) => {
         // Store return URL before redirecting to payment
         sessionStorage.setItem(
           "paymentReturnUrl",
-          "/dashboard/my-appointments"
+          "/dashboard/my-appointments",
         );
         window.location.replace(result.data.paymentUrl);
       } else {
@@ -214,7 +214,7 @@ const AppointmentsList = ({ appointments }: AppointmentsListProps) => {
                   <span className="font-medium">
                     {format(
                       new Date(appointment.schedule.startDateTime),
-                      "EEEE, MMM d, yyyy"
+                      "EEEE, MMM d, yyyy",
                     )}
                   </span>
                 </div>
@@ -223,12 +223,12 @@ const AppointmentsList = ({ appointments }: AppointmentsListProps) => {
                   <span>
                     {format(
                       new Date(appointment.schedule.startDateTime),
-                      "h:mm a"
+                      "h:mm a",
                     )}{" "}
                     -{" "}
                     {format(
                       new Date(appointment.schedule.endDateTime),
-                      "h:mm a"
+                      "h:mm a",
                     )}
                   </span>
                 </div>

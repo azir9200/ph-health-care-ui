@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
 
+import { getAIDoctorSuggestion } from "@/services/ai/ai.service";
+import { AISuggestedDoctor } from "@/types/ai.interface";
 import {
   Award,
   Briefcase,
@@ -28,8 +30,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Badge } from "../ui/badge";
-import { AISuggestedDoctor } from "@/types/ai.interface";
-import { getAIDoctorSuggestion } from "@/services/ai/ai.service";
 
 interface AISearchDialogProps {
   initialSymptoms?: string;
@@ -48,7 +48,7 @@ export default function AISearchDialog({
   const [symptoms, setSymptoms] = useState(initialSymptoms);
   const [isLoading, setIsLoading] = useState(false);
   const [suggestedDoctors, setSuggestedDoctors] = useState<AISuggestedDoctor[]>(
-    []
+    [],
   );
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [hasAutoSearched, setHasAutoSearched] = useState(false);
@@ -266,7 +266,7 @@ export default function AISearchDialog({
                             <span className="text-xl font-bold text-primary">
                               {doctor.name
                                 ?.split(" ")
-                                .map((n: any) => n[0])
+                                .map((n) => n[0])
                                 .join("")
                                 .toUpperCase()
                                 .slice(0, 2) || "DR"}

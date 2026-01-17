@@ -14,6 +14,7 @@ export async function createAppointment(data: IAppointmentFormData) {
     });
 
     const result = await response.json();
+    
     if (result.success) {
       revalidateTag("my-appointments", { expire: 0 });
       revalidateTag("appointments-list", { expire: 0 });

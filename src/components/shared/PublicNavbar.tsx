@@ -5,7 +5,6 @@ import Link from "next/link";
 import AISearchDialog from "./AISSearchDialog";
 import MobileMenu from "./MobileMenu";
 import NavbarAuthButtons from "./NavbarAuthButtons";
-import Image from "next/image";
 
 const PublicNavbar = async () => {
   const navItems = [
@@ -24,19 +23,11 @@ const PublicNavbar = async () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur  dark:bg-background/95">
-      <div className=" mx-auto flex h-16 items-center justify-between bg-sky-500 px-4">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <Link href="/" className="flex items-center space-x-2">
-          <Image
-            src="https://i.ibb.co/TxnqVbcW/Logo-Health.jpg"
-            alt="PH Doc logo"
-            width={50}
-            height={50}
-            className="rounded-full"
-            priority
-          />
           <span className="text-xl font-bold text-primary">PH Doc</span>
         </Link>
-
+        
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
           {navItems.map((link) => (
             <Link
