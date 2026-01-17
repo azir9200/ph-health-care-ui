@@ -34,7 +34,7 @@ const DoctorMySchedulesPage = async ({
   return (
     <div className="space-y-6">
       <MySchedulesHeader
-        availableSchedules={availableSchedulesResponse?.data?.data || []}
+        availableSchedules={availableSchedulesResponse?.data || []}
       />
 
       <MySchedulesFilters />

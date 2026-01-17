@@ -19,13 +19,13 @@ interface DoctorProfileContentProps {
 }
 
 const DoctorProfileContent = ({ doctor }: DoctorProfileContentProps) => {
-  const initials = doctor.name
+  const initials = doctor?.name
     .split(" ")
     .map((n) => n[0])
     .join("")
     .toUpperCase()
     .slice(0, 2);
-
+  console.log(" Zzjknjn", doctor);
   return (
     <div className="space-y-6">
       {/* Doctor Header Card */}
@@ -35,11 +35,11 @@ const DoctorProfileContent = ({ doctor }: DoctorProfileContentProps) => {
             {/* Profile Picture */}
             <div className="flex justify-center md:justify-start">
               <Avatar className="h-32 w-32">
-                {doctor.profilePhoto ? (
+                {doctor?.profilePhoto ? (
                   <AvatarImage
                     src={
-                      typeof doctor.profilePhoto === "string"
-                        ? doctor.profilePhoto
+                      typeof doctor?.profilePhoto === "string"
+                        ? doctor?.profilePhoto
                         : undefined
                     }
                     alt={doctor.name}
@@ -55,19 +55,22 @@ const DoctorProfileContent = ({ doctor }: DoctorProfileContentProps) => {
             {/* Doctor Info */}
             <div className="flex-1 space-y-4">
               <div>
-                <h1 className="text-3xl font-bold">{doctor.name}</h1>
+                <h1 className="text-3xl font-bold">{doctor?.name}</h1>
                 <p className="text-muted-foreground mt-1">
-                  {doctor.designation}
+                  {doctor?.designation}
                 </p>
               </div>
 
               {/* Specialties */}
-              {doctor.doctorSpecialties &&
-                doctor.doctorSpecialties.length > 0 && (
+              {doctor?.doctorSpecialties &&
+                doctor?.doctorSpecialties?.length > 0 && (
                   <div className="flex flex-wrap gap-2">
-                    {doctor.doctorSpecialties.map((specialty) => (
-                      <Badge key={specialty.specialitiesId} variant="secondary">
-                        {specialty.specialities?.title || "Specialty"}
+                    {doctor?.doctorSpecialties?.map((specialty) => (
+                      <Badge
+                        key={specialty?.specialitiesId}
+                        variant="secondary"
+                      >
+                        {specialty?.specialities?.title || "Specialty"}
                       </Badge>
                     ))}
                   </div>
@@ -75,18 +78,18 @@ const DoctorProfileContent = ({ doctor }: DoctorProfileContentProps) => {
 
               {/* Rating & Fee */}
               <div className="flex flex-wrap gap-4">
-                {doctor.averageRating && (
+                {doctor?.averageRating && (
                   <div className="flex items-center gap-2">
                     <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
                     <span className="font-semibold">
-                      {doctor.averageRating.toFixed(1)}
+                      {doctor?.averageRating.toFixed(1)}
                     </span>
                   </div>
                 )}
                 <div className="flex items-center gap-2 text-primary">
                   <DollarSign className="h-5 w-5" />
                   <span className="font-semibold">
-                    ${doctor.appointmentFee}
+                    ${doctor?.appointmentFee}
                   </span>
                   <span className="text-sm text-muted-foreground">
                     per visit
@@ -114,16 +117,16 @@ const DoctorProfileContent = ({ doctor }: DoctorProfileContentProps) => {
           <CardContent className="space-y-3">
             <div className="flex items-center gap-3">
               <Mail className="h-5 w-5 text-muted-foreground" />
-              <span>{doctor.email}</span>
+              <span>{doctor?.email}</span>
             </div>
             <div className="flex items-center gap-3">
               <Phone className="h-5 w-5 text-muted-foreground" />
-              <span>{doctor.contactNumber}</span>
+              <span>{doctor?.contactNumber}</span>
             </div>
-            {doctor.address && (
+            {doctor?.address && (
               <div className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-muted-foreground mt-1" />
-                <span>{doctor.address}</span>
+                <span>{doctor?.address}</span>
               </div>
             )}
           </CardContent>
@@ -140,8 +143,8 @@ const DoctorProfileContent = ({ doctor }: DoctorProfileContentProps) => {
               <div>
                 <p className="text-sm text-muted-foreground">Experience</p>
                 <p className="font-semibold">
-                  {doctor.experience
-                    ? `${doctor.experience} years`
+                  {doctor?.experience
+                    ? `${doctor?.experience} years`
                     : "Not specified"}
                 </p>
               </div>
@@ -152,7 +155,7 @@ const DoctorProfileContent = ({ doctor }: DoctorProfileContentProps) => {
                 <p className="text-sm text-muted-foreground">
                   Current Workplace
                 </p>
-                <p className="font-semibold">{doctor.currentWorkingPlace}</p>
+                <p className="font-semibold">{doctor?.currentWorkingPlace}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -161,7 +164,7 @@ const DoctorProfileContent = ({ doctor }: DoctorProfileContentProps) => {
                 <p className="text-sm text-muted-foreground">
                   Registration Number
                 </p>
-                <p className="font-semibold">{doctor.registrationNumber}</p>
+                <p className="font-semibold">{doctor?.registrationNumber}</p>
               </div>
             </div>
           </CardContent>
@@ -177,7 +180,7 @@ const DoctorProfileContent = ({ doctor }: DoctorProfileContentProps) => {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-muted-foreground">{doctor.qualification}</p>
+          <p className="text-muted-foreground">{doctor?.qualification}</p>
         </CardContent>
       </Card>
     </div>

@@ -1,8 +1,8 @@
 import AIDoctorSuggestion from "@/components/modules/Consultation/AIDoctorSuggestion";
 import DoctorGrid from "@/components/modules/Consultation/DoctorGrid";
 import DoctorSearchFilters from "@/components/modules/Consultation/DoctorSearchFilter";
-import TablePagination from "@/components/shared/TablePagination";
 import { TableSkeleton } from "@/components/shared/skeleton/TableSkeleton";
+import TablePagination from "@/components/shared/TablePagination";
 import { queryStringFormatter } from "@/lib/formatters";
 import { getDoctors } from "@/services/admin/doctorManagement";
 import { getSpecialities } from "@/services/admin/specialitiesManagement";

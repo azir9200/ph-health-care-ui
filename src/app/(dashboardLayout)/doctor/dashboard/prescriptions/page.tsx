@@ -2,12 +2,14 @@ import DoctorPrescriptionsTable from "@/components/modules/Doctor/DoctorPrescrip
 import { getMyAppointments } from "@/services/patient/appointment.service";
 import { IAppointment } from "@/types/appointments.interface";
 import { IPrescription } from "@/types/prescription.interface";
+import { Suspense } from "react";
 
-export default async function DoctorPrescriptionsPage() {
+async function PrescriptionsContent() {
   // Get all doctor's appointments
   const response = await getMyAppointments();
   const appointments: IAppointment[] = response?.data || [];
 
+  // Extract prescriptions from appointments that have them
   const prescriptions: IPrescription[] = appointments
     .filter((appointment) => appointment.prescription) // Only appointments with prescriptions
     .map((appointment) => ({
@@ -16,6 +18,10 @@ export default async function DoctorPrescriptionsPage() {
       appointment, // Include full appointment data for display
     }));
 
+  return <DoctorPrescriptionsTable prescriptions={prescriptions} />;
+}
+
+export default async function DoctorPrescriptionsPage() {
   return (
     <div className="space-y-6">
       <div>
@@ -25,7 +31,9 @@ export default async function DoctorPrescriptionsPage() {
         </p>
       </div>
 
-      <DoctorPrescriptionsTable prescriptions={prescriptions} />
+      <Suspense fallback={<div>Loading prescriptions...</div>}>
+        <PrescriptionsContent />
+      </Suspense>
     </div>
   );
 }

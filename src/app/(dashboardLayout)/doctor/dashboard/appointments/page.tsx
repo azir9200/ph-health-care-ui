@@ -1,13 +1,19 @@
 // import DoctorAppointmentsTable from "@/components/modules/Doctor/DoctorAppointments/DoctorAppointmentTable";
 // import { getMyAppointments } from "@/services/patient/appointment.service";
 import DoctorAppointmentsTable from "@/components/modules/Doctor/DoctorAppointments/DoctorAppointmentTable";
+import { TableSkeleton } from "@/components/shared/skeleton/TableSkeleton";
 import { getMyAppointments } from "@/services/patient/appointment.service";
 import { IAppointment } from "@/types/appointments.interface";
+import { Suspense } from "react";
 
-export default async function DoctorAppointmentsPage() {
+async function AppointmentsContent() {
   const response = await getMyAppointments();
   const appointments: IAppointment[] = response?.data || [];
 
+  return <DoctorAppointmentsTable appointments={appointments} />;
+}
+
+export default async function DoctorAppointmentsPage() {
   return (
     <div className="space-y-6">
       <div>
@@ -17,7 +23,9 @@ export default async function DoctorAppointmentsPage() {
         </p>
       </div>
 
-      <DoctorAppointmentsTable appointments={appointments} />
+      <Suspense fallback={<TableSkeleton columns={8} rows={10} />}>
+        <AppointmentsContent />
+      </Suspense>
     </div>
   );
 }

@@ -1,7 +1,3 @@
-// import { AppointmentBarChart } from "@/components/shared/AppointmentBarChart";
-// import { AppointmentPieChart } from "@/components/shared/AppointmentPieChart";
-// import { DashboardSkeleton } from "@/components/shared/DashboardSkeleton";
-// import { StatsCard } from "@/components/shared/StatCard";
 import { DashboardSkeleton } from "@/components/shared/skeleton/DashboardSkeleton";
 import { AppointmentBarChart } from "@/components/shared/stat/AppointmentBarChart";
 import { AppointmentPieChart } from "@/components/shared/stat/AppointmentPieChart";
@@ -12,40 +8,41 @@ import { Suspense } from "react";
 
 async function AdminDashboardContent() {
   const result = await getDashboardMetaData();
+
   const data: IAdminDashboardMeta = result.data;
 
-  const totalRevenue = data?.totalRevenue?._sum?.amount || 0;
+  const totalRevenue = data.totalRevenue?._sum?.amount || 0;
 
   return (
     <div className="space-y-6">
       {/* Stats Cards Grid */}
       <div
         className={`grid gap-4 md:grid-cols-2 lg:grid-cols-3 ${
-          data?.adminCount !== undefined ? "xl:grid-cols-6" : "xl:grid-cols-5"
+          data.adminCount !== undefined ? "xl:grid-cols-6" : "xl:grid-cols-5"
         }`}
       >
         <StatsCard
           title="Total Appointments"
-          value={data?.appointmentCount.toLocaleString()}
+          value={data.appointmentCount.toLocaleString()}
           iconName="CalendarDays"
           description="All time appointments"
           iconClassName="bg-blue-100"
         />
         <StatsCard
           title="Total Patients"
-          value={data?.patientCount.toLocaleString()}
+          value={data.patientCount.toLocaleString()}
           iconName="Users"
           description="Registered patients"
           iconClassName="bg-green-100"
         />
         <StatsCard
           title="Total Doctors"
-          value={data?.doctorCount.toLocaleString()}
+          value={data.doctorCount.toLocaleString()}
           iconName="Stethoscope"
           description="Active doctors"
           iconClassName="bg-purple-100"
         />
-        {data?.adminCount !== undefined && (
+        {data.adminCount !== undefined && (
           <StatsCard
             title="Total Admins"
             value={data.adminCount.toLocaleString()}
@@ -56,7 +53,7 @@ async function AdminDashboardContent() {
         )}
         <StatsCard
           title="Total Payments"
-          value={data?.paymentCount.toLocaleString()}
+          value={data.paymentCount.toLocaleString()}
           iconName="CreditCard"
           description="Payment transactions"
           iconClassName="bg-indigo-100"
@@ -72,8 +69,8 @@ async function AdminDashboardContent() {
 
       {/* Charts Section */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <AppointmentBarChart data={data?.barChartData} />
-        <AppointmentPieChart data={data?.pieCharData} />
+        <AppointmentBarChart data={data.barChartData} />
+        <AppointmentPieChart data={data.pieCharData} />
       </div>
     </div>
   );

@@ -1,18 +1,16 @@
-// import { AppointmentPieChart } from "@/components/shared/AppointmentPieChart";
-// import { DashboardSkeleton } from "@/components/shared/DashboardSkeleton";
-// import { StatsCard } from "@/components/shared/StatCard";
 import { DashboardSkeleton } from "@/components/shared/skeleton/DashboardSkeleton";
 import { AppointmentPieChart } from "@/components/shared/stat/AppointmentPieChart";
 import { StatsCard } from "@/components/shared/stat/StatCard";
 import { getDashboardMetaData } from "@/services/meta/dashboard.service";
 import { IDoctorDashboardMeta } from "@/types/meta.interface";
 import { Suspense } from "react";
+
 async function DoctorDashboardContent() {
   const result = await getDashboardMetaData();
-  const data: IDoctorDashboardMeta = result?.data;
 
+  const data: IDoctorDashboardMeta = result.data;
   // Safe access with fallback for revenue data
-  const totalRevenue = data?.totalRevenue?._sum?.amount || 0;
+  const totalRevenue = data.totalRevenue?._sum?.amount || 0;
 
   return (
     <div className="space-y-6">
@@ -20,28 +18,28 @@ async function DoctorDashboardContent() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <StatsCard
           title="Total Appointments"
-          value={data?.appointmentCount.toLocaleString()}
+          value={data.appointmentCount.toLocaleString()}
           iconName="CalendarDays"
           description="All time appointments"
           iconClassName="bg-blue-100"
         />
         <StatsCard
           title="Total Patients"
-          value={data?.patientCount.toLocaleString()}
+          value={data.patientCount.toLocaleString()}
           iconName="Users"
           description="Unique patients served"
           iconClassName="bg-green-100"
         />
         <StatsCard
           title="Total Reviews"
-          value={data?.reviewCount.toLocaleString()}
+          value={data.reviewCount.toLocaleString()}
           iconName="Star"
           description="Patient reviews"
           iconClassName="bg-yellow-100"
         />
         <StatsCard
           title="Total Revenue"
-          value={`$${totalRevenue?.toLocaleString()}`}
+          value={`$${totalRevenue.toLocaleString()}`}
           iconName="DollarSign"
           description="Total earnings"
           iconClassName="bg-emerald-100"
@@ -51,7 +49,7 @@ async function DoctorDashboardContent() {
       {/* Appointment Status Chart */}
       <div className="grid gap-4">
         <AppointmentPieChart
-          data={data?.formattedAppointmentStatusDistribution}
+          data={data.formattedAppointmentStatusDistribution}
           title="Appointment Status Distribution"
           description="Overview of your appointment statuses"
         />

@@ -6,32 +6,33 @@ import { ISchedule } from "@/types/schedule.interface";
 import { notFound } from "next/navigation";
 
 interface BookAppointmentPageProps {
-  params: {
+  params: Promise<{
     doctorId: string;
     scheduleId: string;
-  };
+  }>;
 }
 
 export default async function BookAppointmentPage({
   params,
 }: BookAppointmentPageProps) {
-  const { doctorId, scheduleId } = params;
+  const { doctorId, scheduleId } = await params;
 
+  // Fetch doctor and schedule in parallel
   const [doctorResponse, scheduleResponse] = await Promise.all([
     getDoctorById(doctorId),
     getScheduleById(scheduleId),
   ]);
 
-  if (!doctorResponse.success || !scheduleResponse.success) {
+  if (!doctorResponse?.success || !scheduleResponse?.success) {
     notFound();
   }
 
+  const doctor: IDoctor = doctorResponse.data;
+  const schedule: ISchedule = scheduleResponse.data;
+
   return (
     <div className="container mx-auto px-4 py-8">
-      <AppointmentConfirmation
-        doctor={doctorResponse.data}
-        schedule={scheduleResponse.data}
-      />
+      <AppointmentConfirmation doctor={doctor} schedule={schedule} />
     </div>
   );
 }

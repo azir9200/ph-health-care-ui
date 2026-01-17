@@ -15,7 +15,7 @@ const AdminPatientsManagementPage = async ({
   const searchParamsObj = await searchParams;
   const queryString = queryStringFormatter(searchParamsObj);
   const patientsResult = await getPatients(queryString);
-  console.log("object azir", patientsResult);
+
   const totalPages = Math.ceil(
     (patientsResult?.meta?.total || 1) / (patientsResult?.meta?.limit || 1)
   );

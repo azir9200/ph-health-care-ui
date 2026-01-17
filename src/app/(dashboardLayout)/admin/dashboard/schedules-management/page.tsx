@@ -10,16 +10,17 @@ import { Suspense } from "react";
 const AdminSchedulesManagementPage = async ({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) => {
   const searchParamsObj = await searchParams;
 
   const queryString = queryStringFormatter(searchParamsObj);
   const schedulesResult = await getSchedules(queryString);
+
   const totalPages = Math.ceil(
     (schedulesResult?.meta?.total || 1) / (schedulesResult?.meta?.limit || 1)
   );
- 
+
   return (
     <div className="space-y-6">
       <SchedulesManagementHeader />
@@ -28,13 +29,7 @@ const AdminSchedulesManagementPage = async ({
       <SchedulesFilter />
 
       <Suspense fallback={<TableSkeleton columns={4} rows={10} />}>
-        {/* <SchedulesTable
-          schedules={
-            Array.isArray(schedulesResult?.data) ? schedulesResult.data : []
-          }
-        /> */}
-        <SchedulesTable schedules={schedulesResult?.data?.data || []} />
-
+        <SchedulesTable schedules={schedulesResult?.data || []} />
         <TablePagination
           currentPage={schedulesResult?.meta?.page || 1}
           totalPages={totalPages || 1}
