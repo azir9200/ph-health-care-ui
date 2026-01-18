@@ -12,7 +12,6 @@ import InputFieldError from "./shared/InputFieldError";
 const LoginForm = ({ redirect }: { redirect?: string }) => {
   const [state, formAction, isPending] = useActionState(loginUser, null);
 
-
   useEffect(() => {
     if (state && !state.success && state.message) {
       toast.error(state.message);
@@ -43,21 +42,21 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
             <Button
               type="button"
               onClick={() => handleDefaultLogin("user")}
-              className="bg-green-600 hover:bg-green-700 text-white"
+              className="bg-blue-400 hover:bg-blue-700 text-white"
             >
               User
             </Button>
             <Button
               type="button"
               onClick={() => handleDefaultLogin("doctor")}
-              className="bg-purple-600 hover:bg-purple-700 text-white"
+              className="bg-blue-500 hover:bg-blue-800 text-white"
             >
               Doctor
             </Button>
             <Button
               type="button"
               onClick={() => handleDefaultLogin("admin")}
-              className="bg-blue-600 hover:bg-blue-700 text-white"
+              className="bg-blue-800 hover:bg-blue-950 text-white"
             >
               Admin
             </Button>
@@ -93,7 +92,11 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
         </div>
         <FieldGroup className="mt-4">
           <Field>
-            <Button type="submit" disabled={isPending}>
+            <Button
+              type="submit"
+              className="bg-blue-800 hover:bg-blue-950 text-white"
+              disabled={isPending}
+            >
               {isPending ? "Logging in..." : "Login"}
             </Button>
 
@@ -105,7 +108,7 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
             </FieldDescription>
             <FieldDescription className="px-6 text-center">
               <a
-                href="/forget-password"
+                href="forgot-password"
                 className="text-blue-600 hover:underline"
               >
                 Forgot password?

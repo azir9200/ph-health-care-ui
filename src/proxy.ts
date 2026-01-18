@@ -68,10 +68,7 @@ export async function proxy(request: NextRequest) {
     );
   }
 
-  // Rule 2: Handle /reset-password route BEFORE checking authentication
-  // This route has two valid cases:
-  // 1. User coming from email reset link (has email + token in query params)
-  // 2. Authenticated user with needPasswordChange=true
+  
   if (pathname === "/reset-password") {
     const email = request.nextUrl.searchParams.get("email");
     const token = request.nextUrl.searchParams.get("token");
@@ -108,7 +105,6 @@ export async function proxy(request: NextRequest) {
           );
         }
 
-        // Token and email are valid, allow access without authentication
         return NextResponse.next();
       } catch {
         // Token is invalid or expired
@@ -118,7 +114,6 @@ export async function proxy(request: NextRequest) {
       }
     }
 
-    // No access token and no valid reset token, redirect to login
     const loginUrl = new URL("/login", request.url);
     loginUrl.searchParams.set("redirect", pathname);
     return NextResponse.redirect(loginUrl);

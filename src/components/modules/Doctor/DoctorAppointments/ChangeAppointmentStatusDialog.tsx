@@ -38,7 +38,7 @@ export default function ChangeAppointmentStatusDialog({
   onClose,
 }: ChangeStatusDialogProps) {
   const [newStatus, setNewStatus] = useState<AppointmentStatus>(
-    appointment.status
+    appointment.status,
   );
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -74,7 +74,7 @@ export default function ChangeAppointmentStatusDialog({
               "Don't forget to provide a prescription for this patient",
               {
                 duration: 5000,
-              }
+              },
             );
           }, 1000);
         }

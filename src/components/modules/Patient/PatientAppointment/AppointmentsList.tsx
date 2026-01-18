@@ -36,7 +36,7 @@ const AppointmentsList = ({ appointments }: AppointmentsListProps) => {
   const [processingPaymentId, setProcessingPaymentId] = useState<string | null>(
     null,
   );
-  console.log("appoint llist", appointments);
+
   const handlePayNow = async (appointmentId: string) => {
     setProcessingPaymentId(appointmentId);
     try {
@@ -87,6 +87,9 @@ const AppointmentsList = ({ appointments }: AppointmentsListProps) => {
     };
 
     const config = statusConfig[status];
+    if (!config) {
+      return <Badge variant="secondary">Unknown</Badge>;
+    }
     return (
       <Badge variant={config.variant} className={config.className}>
         {config.label}

@@ -69,7 +69,11 @@ const RegisterForm = () => {
         </div>
         <FieldGroup className="mt-4">
           <Field>
-            <Button type="submit" disabled={isPending}>
+            <Button
+              type="submit"
+              className="bg-blue-700 hover:bg-blue-950 text-white"
+              disabled={isPending}
+            >
               {isPending ? "Creating Account..." : "Create Account"}
             </Button>
 
