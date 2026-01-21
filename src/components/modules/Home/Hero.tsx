@@ -54,15 +54,7 @@ export function Hero({
       "✨ Powered by advanced AI algorithms for accurate doctor matching",
   },
 }: HeroProps) {
-  //   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  //     e.preventDefault();
-  //     const formData = new FormData(e.currentTarget);
-  //     const data = {
-  //       symptoms: formData.get('symptoms') as string,
-  //       specialty: formData.get('specialty') as string,
-  //     };
-  //     formCard.onSubmit?.(data);
-  //   };
+  
 
   return (
     <div className="w-full relative">

@@ -54,7 +54,7 @@ export const doctorAppointmentColumns: Column<IAppointment>[] = [
           <p className="font-medium">
             {format(
               new Date(appointment.schedule.startDateTime),
-              "MMM d, yyyy"
+              "MMM d, yyyy",
             )}
           </p>
           <p className="text-muted-foreground">
@@ -71,8 +71,8 @@ export const doctorAppointmentColumns: Column<IAppointment>[] = [
     accessor: (appointment) => {
       const config = statusConfig[appointment.status];
       return (
-        <Badge variant={config.variant} className={config.className}>
-          {config.label}
+        <Badge variant={config?.variant} className={config?.className}>
+          {config?.label}
         </Badge>
       );
     },

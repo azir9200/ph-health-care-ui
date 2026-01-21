@@ -30,11 +30,14 @@ const PatientFormDialog = ({
 
   const [state, formAction, isPending] = useActionState(
     updatePatient.bind(null, patient?.id as string),
-    null
+    null,
   );
+  const prevStateRef = useRef(state);
 
   // Handle success/error from server
   useEffect(() => {
+    if (state === prevStateRef.current) return;
+    prevStateRef.current = state;
     if (state?.success) {
       toast.success(state.message || "Operation successful");
       if (formRef.current) {

@@ -11,6 +11,7 @@ interface BookAppointmentPageProps {
     scheduleId: string;
   }>;
 }
+export const revalidate = 600;
 
 export default async function BookAppointmentPage({
   params,

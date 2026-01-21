@@ -25,7 +25,7 @@ const DoctorProfileContent = ({ doctor }: DoctorProfileContentProps) => {
     .join("")
     .toUpperCase()
     .slice(0, 2);
-  console.log(" Zzjknjn", doctor);
+ 
   return (
     <div className="space-y-6">
       {/* Doctor Header Card */}

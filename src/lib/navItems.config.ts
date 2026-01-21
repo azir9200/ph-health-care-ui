@@ -1,4 +1,4 @@
-("");
+"";
 import { getMyAppointments } from "@/services/patient/appointment.service";
 import { IAppointment } from "@/types/appointments.interface";
 import { NavSection } from "@/types/dashboard.interface";
@@ -93,44 +93,6 @@ export const getDoctorNavItems = async (): Promise<NavSection[]> => {
     },
   ];
 };
-
-// export const patientNavItems: NavSection[] = [
-//     {
-//         title: "Appointments",
-//         items: [
-//             {
-//                 title: "My Appointments",
-//                 href: "/dashboard/my-appointments",
-//                 icon: "Calendar", // ✅ String
-//                 roles: ["PATIENT"],
-//             },
-//             {
-//                 title: "Book Appointment",
-//                 href: "/consultation",
-//                 icon: "ClipboardList", // ✅ String
-//                 roles: ["PATIENT"],
-//             },
-//         ],
-//     },
-//     {
-//         title: "Medical Records",
-//         items: [
-//             {
-//                 title: "My Prescriptions",
-//                 href: "/dashboard/my-prescriptions",
-//                 icon: "FileText", // ✅ String
-//                 roles: ["PATIENT"],
-//             },
-//             {
-//                 title: "Health Records",
-//                 href: "/dashboard/health-records",
-//                 icon: "Activity", // ✅ String
-//                 roles: ["PATIENT"],
-//             },
-//         ],
-//     },
-
-// ]
 
 export const getPatientNavItems = async (): Promise<NavSection[]> => {
   // Fetch upcoming appointments count (only future appointments)
@@ -243,7 +205,7 @@ export const adminNavItems: NavSection[] = [
 ];
 
 export const getNavItemsByRole = async (
-  role: UserRole
+  role: UserRole,
 ): Promise<NavSection[]> => {
   const commonNavItems = getCommonNavItems(role);
 

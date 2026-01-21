@@ -28,40 +28,25 @@ const SpecialitiesFormDialog = ({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [state, formAction, pending] = useActionState(createSpeciality, null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const hasShownToast = useRef(false);
+  const prevStateRef = useRef(state);
 
-  const handleClose = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
-
-    setSelectedFile(null);
-    formRef.current?.reset();
-    onClose();
-  };
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     setSelectedFile(file || null);
   };
-  useEffect(() => {
-    if (open) {
-      hasShownToast.current = false;
-    }
-  }, [open]);
 
   useEffect(() => {
-    if (!state || hasShownToast.current) return;
+    // Only process if state actually changed
+    if (state === prevStateRef.current) return;
+    prevStateRef.current = state;
 
-    hasShownToast.current = true;
-
-    if (state.success) {
+    if (state?.success) {
       toast.success(state.message);
       onSuccess();
       onClose();
-    } else {
+    } else if (state && !state.success && state.message) {
       toast.error(state.message);
 
-      // restore file input on validation error
       if (selectedFile && fileInputRef.current) {
         const dataTransfer = new DataTransfer();
         dataTransfer.items.add(selectedFile);
@@ -69,6 +54,17 @@ const SpecialitiesFormDialog = ({
       }
     }
   }, [state, onSuccess, onClose, selectedFile]);
+
+  const handleClose = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+    if (selectedFile) {
+      setSelectedFile(null);
+    }
+    formRef.current?.reset();
+    onClose();
+  };
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>

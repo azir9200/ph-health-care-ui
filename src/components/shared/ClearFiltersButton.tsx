@@ -73,7 +73,7 @@ interface ClearFiltersButtonProps {
  * // With custom handlers
  * <ClearFiltersButton
  *   onBeforeClear={() => {
- *     console.log('Clearing filters...');
+ *     
  *     return true; // proceed with clear
  *   }}
  *   onAfterClear={() => {

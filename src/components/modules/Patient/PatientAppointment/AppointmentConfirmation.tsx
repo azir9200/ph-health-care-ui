@@ -47,7 +47,7 @@ const AppointmentConfirmation = ({
         doctorId: doctor.id!,
         scheduleId: schedule.id,
       });
-      console.log("Appointment Creation Result:", result);
+      
       if (result?.success && result?.data?.paymentUrl) {
         toast.success("Redirecting to payment...");
         // Redirect to Stripe checkout

@@ -6,11 +6,11 @@ import { getDashboardMetaData } from "@/services/meta/dashboard.service";
 import { IPatientDashboardMeta } from "@/types/meta.interface";
 import { Suspense } from "react";
 
-// Dynamic SSR with fetch-level caching (30s in service for real-time stats)
+
 export const dynamic = "force-dynamic";
 
 async function PatientDashboardContent() {
-  // CRITICAL: Server-side role verification before rendering
+ 
   const result = await getDashboardMetaData();
 
   const data: IPatientDashboardMeta = result.data;

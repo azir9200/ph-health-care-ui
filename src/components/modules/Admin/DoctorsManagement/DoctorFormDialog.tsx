@@ -44,21 +44,10 @@ const DoctorFormDialog = ({
   const isEdit = !!doctor;
 
   const [gender, setGender] = useState<"MALE" | "FEMALE">(
-    doctor?.gender || "MALE"
+    doctor?.gender || "MALE",
   );
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const hasShownToast = useRef(false);
-  const handleClose = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
-    if (selectedFile) {
-      setSelectedFile(null);
-    }
-    formRef.current?.reset();
-    onClose();
-  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -67,8 +56,21 @@ const DoctorFormDialog = ({
 
   const [state, formAction, pending] = useActionState(
     isEdit ? updateDoctor.bind(null, doctor.id!) : createDoctor,
-    null
+    null,
   );
+
+  const prevStateRef = useRef(state);
+
+  const handleClose = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+    if (selectedFile) {
+      setSelectedFile(null); // Clear preview
+    }
+    formRef.current?.reset(); // Clear form
+    onClose(); // Close dialog
+  };
 
   const specialtySelection = useSpecialtySelection({
     doctor,
@@ -79,16 +81,10 @@ const DoctorFormDialog = ({
   const getSpecialtyTitle = (id: string): string => {
     return specialities?.find((s) => s.id === id)?.title || "Unknown";
   };
-  useEffect(() => {
-    if (open) {
-      hasShownToast.current = false;
-    }
-  }, [open]);
 
   useEffect(() => {
-    if (!state || hasShownToast.current) return;
-
-    hasShownToast.current = true;
+    if (state === prevStateRef.current) return;
+    prevStateRef.current = state;
 
     if (state?.success) {
       toast.success(state.message);
@@ -97,7 +93,7 @@ const DoctorFormDialog = ({
       }
       onSuccess();
       onClose();
-    } else if (state && !state.success) {
+    } else if (state && !state.success && state.message) {
       toast.error(state.message);
 
       if (selectedFile && fileInputRef.current) {
@@ -186,7 +182,7 @@ const DoctorFormDialog = ({
               removedSpecialtyIds={specialtySelection.removedSpecialtyIds}
               currentSpecialtyId={specialtySelection.currentSpecialtyId}
               availableSpecialties={specialtySelection.getAvailableSpecialties(
-                specialities!
+                specialities!,
               )}
               isEdit={isEdit}
               onCurrentSpecialtyChange={
@@ -397,8 +393,8 @@ const DoctorFormDialog = ({
               {pending
                 ? "Saving..."
                 : isEdit
-                ? "Update Doctor"
-                : "Create Doctor"}
+                  ? "Update Doctor"
+                  : "Create Doctor"}
             </Button>
           </div>
         </form>

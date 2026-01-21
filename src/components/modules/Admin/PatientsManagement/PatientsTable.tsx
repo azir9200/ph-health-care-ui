@@ -10,8 +10,7 @@ import { toast } from "sonner";
 import PatientFormDialog from "./PatientFormDialog";
 import { patientsColumns } from "./patientsColumns";
 import PatientViewDetailDialog from "./PatientsViewDetailDialog";
-// import { patientsColumns } from "./patientsColumns";
-// import PatientViewDetailDialog from "./PatientsViewDetailDialog";
+
 
 interface PatientsTableProps {
   patients: IPatient[];
