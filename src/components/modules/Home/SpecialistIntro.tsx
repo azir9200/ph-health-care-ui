@@ -13,13 +13,13 @@ const SpecialistIntro = () => {
       <div className="container mx-auto px-4 py-24 flex flex-col lg:flex-row gap-12">
         {/* LEFT CONTENT */}
         <div className="relative flex-2">
-          {/* Grid Background */}
+          {/* Grid Background */}  
           <div className="absolute -top-[90px] -left-[120px] w-[700px] -z-10">
             <Image src={stethoscope} alt="grid background" />
-          </div>
+          </div>  
 
           <h1 className="text-4xl md:text-5xl font-semibold leading-tight">
-            Healthier Hearts
+            Healthier Hearts  
           </h1>
           <h1 className="text-4xl md:text-5xl font-semibold leading-tight">
             Come From
