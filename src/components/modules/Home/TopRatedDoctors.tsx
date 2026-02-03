@@ -9,7 +9,7 @@ const TopRatedDoctors = async () => {
   const doctors: IDoctor[] = doctorsResult.data;
 
   const topRatedDoctors = doctors
-    .filter((doctor) => typeof doctor.averageRating === "number")
+    ?.filter((doctor) => typeof doctor.averageRating === "number")
     .sort((a, b) => b.averageRating! - a.averageRating!)
     .slice(0, 3);
 
@@ -27,7 +27,7 @@ const TopRatedDoctors = async () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-          {topRatedDoctors.map((doctor) => (
+          {topRatedDoctors?.map((doctor) => (
             <DoctorCard key={doctor.id} doctor={doctor} />
           ))}
         </div>

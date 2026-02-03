@@ -2,7 +2,6 @@
 "use client";
 import { loginUser } from "@/services/auth/loginUser";
 import { useActionState, useEffect, useRef } from "react";
-
 import { Button } from "./ui/button";
 import { Field, FieldDescription, FieldGroup, FieldLabel } from "./ui/field";
 import { Input } from "./ui/input";
@@ -11,7 +10,7 @@ import InputFieldError from "./shared/InputFieldError";
 
 const LoginForm = ({ redirect }: { redirect?: string }) => {
   const [state, formAction, isPending] = useActionState(loginUser, null);
-
+ 
   useEffect(() => {
     if (state && !state.success && state.message) {
       toast.error(state.message);
@@ -24,7 +23,7 @@ const LoginForm = ({ redirect }: { redirect?: string }) => {
     const presets = {
       user: { email: "user1@gmail.com", password: "123456" },
       doctor: { email: "doctor1@mail.com", password: "123456" },
-      admin: { email: "admin1@mail.com", password: "123456" },
+      admin: { email: "admin@mail.com", password: "123456" },
     };
 
     const selected = presets[type];

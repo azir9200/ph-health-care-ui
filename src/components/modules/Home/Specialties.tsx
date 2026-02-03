@@ -37,13 +37,13 @@ const Specialities = async () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {specialists.map((specialist) => {
+          {specialists?.map((specialist) => {
             const Icon =
               iconMap[specialist.icon?.toLowerCase()] || iconMap.default;
 
             return (
               <Card
-                key={specialist.id}
+                key={specialist?.id}
                 className={cn(
                   "text-center cursor-pointer transition-all duration-300",
                   "hover:shadow-lg hover:-translate-y-1 hover:bg-primary hover:text-primary-foreground",
@@ -53,7 +53,7 @@ const Specialities = async () => {
                   <div className="w-16 h-16 rounded-full bg-primary/10 mx-auto flex items-center justify-center mb-4">
                     <Icon className="h-8 w-8 text-primary" />
                   </div>
-                  <h3 className="text-lg font-semibold">{specialist.title}</h3>
+                  <h3 className="text-lg font-semibold">{specialist?.title}</h3>
                 </CardContent>
               </Card>
             );
