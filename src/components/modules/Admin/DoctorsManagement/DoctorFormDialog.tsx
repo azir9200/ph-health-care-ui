@@ -58,9 +58,9 @@ const DoctorFormDialog = ({
     isEdit ? updateDoctor.bind(null, doctor.id!) : createDoctor,
     null,
   );
-
+  console.log("creat doc", state);
   const prevStateRef = useRef(state);
-
+  // console.log("creat doc", prevStateRef.current);
   const handleClose = () => {
     if (fileInputRef.current) {
       fileInputRef.current.value = "";

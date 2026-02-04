@@ -27,6 +27,7 @@ const SpecialitiesFormDialog = ({
   const formRef = useRef<HTMLFormElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [state, formAction, pending] = useActionState(createSpeciality, null);
+  console.log("object", state);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const prevStateRef = useRef(state);
 
